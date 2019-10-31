@@ -128,7 +128,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _war
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const todos = [];\n\nconst $todos = $(\".todos\");\nconst $addTodoForm = $(\".add-todo-form\");\n\naddTodo = () => {\n    let val = $addTodoForm.find(\"input[type=text]\").val();\n    console.log(val);\n    setTimeout(() => {\n        console.log($addTodoForm.find(\"input[type=text]\").val(\"\"));\n    }, 2000);\n    let todo = {\n        value: val, \n        done: false\n    };\n    console.log(todo);\n    todos.push(todo);\n\n}\n\naddTodo();\n\n//# sourceURL=webpack:///./src/todo_list.js?");
+eval("const todos = [];\n\nconst $todos = $(\".todos\");\nconst $addTodoForm = $(\".add-todo-form\");\n\naddTodo = () => {\n    let val = $addTodoForm.find(\"input[type=text]\").val();\n    $addTodoForm.find(\"input[type=text]\").val(\"\");\n    \n    let todo = {\n        value: val, \n        done: false\n    };\n    todos.push(todo);\n    \n    populateList(todos);\n}\n\npopulateList = () => {\n    todos.map(( todo ) => {\n        let val = todo.value;\n        let dn =todo.done;\n        todo.value = $(`<label>${val}</label>`);\n        todo.done = $(`<input type=\"checkbox\" value=\"${dn}\">`);\n    })\n    console.log(todos);\n}\n\n$addTodoForm.submit( (event) => {\n    event.preventDefault();\n    addTodo();\n});\n\n//# sourceURL=webpack:///./src/todo_list.js?");
 
 /***/ }),
 

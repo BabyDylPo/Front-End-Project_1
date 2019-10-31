@@ -5,17 +5,28 @@ const $addTodoForm = $(".add-todo-form");
 
 addTodo = () => {
     let val = $addTodoForm.find("input[type=text]").val();
-    console.log(val);
-    setTimeout(() => {
-        console.log($addTodoForm.find("input[type=text]").val(""));
-    }, 2000);
+    $addTodoForm.find("input[type=text]").val("");
+    
     let todo = {
         value: val, 
         done: false
     };
-    console.log(todo);
     todos.push(todo);
-
+    
+    populateList(todos);
 }
 
-addTodo();
+populateList = () => {
+    todos.map(( todo ) => {
+        let val = todo.value;
+        let dn =todo.done;
+        todo.value = $(`<label>${val}</label>`);
+        todo.done = $(`<input type="checkbox" value="${dn}">`);
+    })
+    console.log(todos);
+}
+
+$addTodoForm.submit( (event) => {
+    event.preventDefault();
+    addTodo();
+});
