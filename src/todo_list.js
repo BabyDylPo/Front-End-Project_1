@@ -13,7 +13,7 @@ addTodo = () => {
     };
     todos.push(todo);
     
-    populateList(todos);
+    populateList();
 }
 
 populateList = () => {
